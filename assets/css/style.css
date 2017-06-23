@@ -1,3 +1,29 @@
-body {
-  background-color: black;
+.underline {
+  border-bottom: 5px solid black;
+  float:left;
+  padding-right:10px;
+  padding-bottom: 10px;
+  margin-right: 10px;
+  margin-top:20px;
+  height:20px;
+  line-height: 10px;
+}
+
+.hidden {
+  visibility: hidden;
+}
+.show {
+  visibility: visible;
+}
+
+#placeHolder {
+  width: auto;
+  Height:50px;
+  background-color: grey;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.count {
+  margin:10px;
 }
