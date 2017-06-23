@@ -13,6 +13,7 @@
   var wins = 0;
   var tries = 10;
   var losses = 0;
+  var chosenLetters = [];
 
 // Looping through all letters in letters array and inserting them
 // into there place holders which will currently have a class which
@@ -41,8 +42,11 @@
 
 
       if (letters.indexOf(guess) >= 0){
+        
         wins++;
+        document.getElementById(letters.indexOf(guess)).className = "show";
       } else {
+
         tries--;
       }
 
