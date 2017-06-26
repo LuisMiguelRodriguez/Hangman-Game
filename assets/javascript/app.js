@@ -15,33 +15,36 @@ function randomWord () {
 var word = randomWord();
 
 
-
-
 //For Testing Purposes
-  console.log(word);
+console.log(word);
 
 // Creating an Array of letters from the chosen word
-  var letters = word.split('');
-  var numberOfLetters = letters.length;
+var letters = word.split('');
+var numberOfLetters = letters.length;
 
 // Several variable to initiate
-  var x = '';
-  var wins = 0;
-  var tries = 6;
-  var losses = 0;
-  var chosenLetters = [];
-  var correctGuesses = 0;
+var x = '';
+var wins = 0;
+var tries = 6;
+var losses = 0;
+var chosenLetters = [];
+var correctGuesses = 0;
 
 // Looping through all letters in letters array and inserting them
 // into there place holders which will currently have a class which
 // sets its visibility attribute to hidden. Also a bottom border
 // will be placed for each container to act as a dash below the letters
 
-  for (var i = 0; i < letters.length; i++) {
+
+function createPlaceHolders (array){
+  for (var i = 0; i < array.length; i++) {
     x += "<div class=\"underline\">";
-    x += "<span id=\"" + i + "\" class=\"hidden\">" + letters[i] + "</span>";
+    x += "<span id=\"" + i + "\" class=\"hidden\">" + array[i] + "</span>";
     x += "</div>";
   }
+}
+
+createPlaceHolders(letters);
 
 //Places results from loop into the placeHolder ID to
 //populate displayed dashes
