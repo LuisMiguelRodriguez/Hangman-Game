@@ -1,9 +1,21 @@
 
-// An array of words to pick from
-  var words = ["javascript", "bootstrap", "tanuki", "school"];
 
-// Picking a random word from the array
-  var word = words[Math.floor((Math.random() * words.length))];
+// A function on that returns a random word from an array
+function randomWord () {
+  // An array of words to pick from
+    var words = ["javascript", "bootstrap", "tanuki", "school"];
+
+  // Picking a random word from the array
+  // And Returning it
+    return words[Math.floor((Math.random() * words.length))];
+}
+
+//Assigning word the value of whats returned
+//when excuting the randomWord function
+var word = randomWord();
+
+
+
 
 //For Testing Purposes
   console.log(word);
