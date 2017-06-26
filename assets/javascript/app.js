@@ -10,19 +10,14 @@
   var numberOfLetters = letters.length;
 
 // Several variable to initiate
-  var x = '';
   var wins = 0;
   var tries = 6;
   var losses = 0;
   var chosenLetters = [];
   var correctGuesses = 0;
 
-// Creating placeholders for the letters
+// Creating placeholders for the letters builds on x variable
   createPlaceHolders(letters);
-
-//Places results from loop into the placeHolder ID to
-//populate displayed dashes
-  document.getElementById("placeHolder").innerHTML = x;
 
 //Updating Stats
   updateStats();
@@ -125,14 +120,13 @@
   // will be placed for each container to act as a dash below the letters
 
   function createPlaceHolders (array){
+    var x = '';
     for (var i = 0; i < array.length; i++) {
-      x += "<div class=\"underline\">";
-      x += "<span id=\"" + i + "\" class=\"hidden\">" + array[i] + "</span>";
-      x += "</div>";
+      x += "<div class=\"underline\"><span id=\"" + i + "\" class=\"hidden\">" + array[i] + "</span></div>";
     }
+
+    document.getElementById("placeHolder").innerHTML = x;
   }
-
-
 
   function updateStats (){
     // Applying variable values to specified container
