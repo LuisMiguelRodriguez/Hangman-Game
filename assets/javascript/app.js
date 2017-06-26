@@ -15,10 +15,10 @@
 // Several variable to initiate
   var x = '';
   var wins = 0;
-  var tries = 10;
+  var tries = 6;
   var losses = 0;
   var chosenLetters = [];
-  var correctGuesses = 1;
+  var correctGuesses = 0;
 
 // Looping through all letters in letters array and inserting them
 // into there place holders which will currently have a class which
@@ -45,8 +45,13 @@
       // Grabs value of keyboard keyup event
       var guess = event.key;
 
-      console.log(guess);
+      var letterStyling = '';
 
+      letterStyling += "<span class='btn btn-danger'>" + guess + "</span>";
+
+      chosenLetters.push(letterStyling);
+      console.log(guess);
+      document.getElementById("chosenLetters").innerHTML = chosenLetters;
       //Grabing either -1 for false or index number of letter if true
       var guessIndex = letters.indexOf(guess);
 
@@ -58,6 +63,10 @@
         console.log(guessIndex);
         document.getElementById(guessIndex).className = "show";
 
+        //Create Loop or switch case for the several different sprites
+
+
+
         delete letters[guessIndex];
         console.log(letters);
 
@@ -67,6 +76,7 @@
         console.log("------------------------");
 
         while (pos !== -1){
+          correctGuesses++;
           document.getElementById(pos).className = "show";
           delete letters[pos];
           console.log(letters);
@@ -78,12 +88,26 @@
 
         tries--;
 
+        // Changes sprite positin after failed attempts
+        if (tries === 5){
+          document.getElementById('hangman').style.backgroundPosition = '0 -512px';
+        } else if (tries === 4) {
+          document.getElementById('hangman').style.backgroundPosition = '0 -1024px';
+        } else if (tries === 3) {
+          document.getElementById('hangman').style.backgroundPosition = '0 -1536px';
+        } else if (tries === 2) {
+          document.getElementById('hangman').style.backgroundPosition = '0 -2048px';
+        }else if (tries === 1) {
+          document.getElementById('hangman').style.backgroundPosition = '0 -2560px';
+        }else if (tries === 0) {
+          document.getElementById('hangman').style.backgroundPosition = '0 -3072px';
+        }
       }
 
       if (correctGuesses === numberOfLetters){
+        wins++ ;
         alert("You Win");
       }
-
       // Checking to see if tries are finished
       if(tries <= 0){
         alert("You loose Loser");
@@ -99,6 +123,7 @@
       document.getElementById("losses").innerHTML = losses;
       console.log("losses: " + losses);
       console.log("------------------");
+
 
   }
 

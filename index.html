@@ -37,9 +37,14 @@
 
     <div class="container">
       <div class="jumbotron">
-        <div id="placeHolder">
+          <!-- // Good Place to insert a pop up that shows you won
+          // or lost and to choice to play the game again -->
+        <div id="hangman" class="center"></div>
+        <div id="placeHolder" class="center">
 
         </div>
+
+      <div class="container">
         <div class="count">
           <span class="btn btn-primary">
             Wins: <span id="wins"></span>
@@ -58,6 +63,14 @@
             Losses: <span id="losses"></span>
           </span>
         </div>
+
+        <div class="count">
+          <span class="btn btn-primary">
+            Picked Letters: <span id="chosenLetters" class="letters"></span>
+          </span>
+
+        </div>
+      </div>
 
       </div>
     </div>

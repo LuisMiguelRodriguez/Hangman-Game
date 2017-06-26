@@ -14,17 +14,30 @@
   visibility: hidden;
 }
 .show {
-  visibility: visible; 
+  visibility: visible;
 }
 
 #placeHolder {
-  width: auto;
+  width: 512px;
   Height:50px;
   background-color: grey;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 .count {
   margin:10px;
+}
+
+#hangman {
+  width:512px;
+  height:512px;
+  background: url(../images/Hangman.jpg) top left no-repeat;
+}
+
+.letters {
+  font-size: 20px;
+  line-height: 20px;
+}
+.center {
+  margin-left: auto;
+  margin-right: auto;
 }
