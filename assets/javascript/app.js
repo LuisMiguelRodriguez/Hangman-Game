@@ -13,7 +13,6 @@
   var wins = 0;
   var tries = 6;
   var losses = 0;
-
   var correctGuesses = 0;
 
 // Creating placeholders for the letters builds on x variable
@@ -38,30 +37,13 @@
       //  Tesing if current letter exists in letters Array
       if (guessIndex >= 0){
 
-        correctGuesses++;
-        console.log(guessIndex);
-        document.getElementById(guessIndex).className = "show";
-
-        //Create Loop or switch case for the several different sprites
-
-
-
-        delete letters[guessIndex];
-        console.log(letters);
-
-        var pos = letters.indexOf(guess);
-        console.log(pos);
-        console.log("pos value : " +pos);
-        console.log("------------------------");
-
-        while (pos !== -1){
+        while (guessIndex !== -1){
           correctGuesses++;
-          document.getElementById(pos).className = "show";
-          delete letters[pos];
+          document.getElementById(guessIndex).className = "show";
+          delete letters[guessIndex];
           console.log(letters);
-          pos = letter.indexOf(pos);
+          guessIndex = letter.indexOf(guessIndex);
         }
-
 
       } else {
 
