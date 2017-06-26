@@ -14,6 +14,7 @@
   var tries = 6;
   var losses = 0;
   var correctGuesses = 0;
+  var position = 0;
   var chosenLetters = [];
 
 // Creating placeholders for the letters builds on x variable
@@ -49,32 +50,24 @@
       } else {
         // Failed guess subtracting from tries
         tries--;
+        position += 512;
+        var hangman = document.getElementById('hangman');
 
-        // Changes sprite positin after failed attempts
-        if (tries === 5){
-          document.getElementById('hangman').style.backgroundPosition = '0 -512px';
-        } else if (tries === 4) {
-          document.getElementById('hangman').style.backgroundPosition = '0 -1024px';
-        } else if (tries === 3) {
-          document.getElementById('hangman').style.backgroundPosition = '0 -1536px';
-        } else if (tries === 2) {
-          document.getElementById('hangman').style.backgroundPosition = '0 -2048px';
-        }else if (tries === 1) {
-          document.getElementById('hangman').style.backgroundPosition = '0 -2560px';
-        }else if (tries === 0) {
-          document.getElementById('hangman').style.backgroundPosition = '0 -3072px';
+        // Changes sprite position after failed attempts
+        if (tries >= 1){
+          hangman.style.backgroundPosition = '0 -'+ position +'px';
+        } else {
+          alert("You Loose");
         }
 
-
       }
-
-
-      // Updating Wins , Tries and Losses
 
       updateStats();
   }
 
+// **************************************************************
 // ********************* FUNCTIONS ******************************
+// **************************************************************
 
 
 
