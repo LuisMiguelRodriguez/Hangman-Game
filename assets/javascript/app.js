@@ -14,6 +14,7 @@
   var tries = 6;
   var losses = 0;
   var correctGuesses = 0;
+  var chosenLetters = [];
 
 // Creating placeholders for the letters builds on x variable
   createPlaceHolders(letters);
@@ -36,17 +37,17 @@
       //  Game Logic
       //  Tesing if current letter exists in letters Array
       if (guessIndex >= 0){
-
+        var count = 0;
         while (guessIndex !== -1){
           correctGuesses++;
           document.getElementById(guessIndex).className = "show";
           delete letters[guessIndex];
           console.log(letters);
-          guessIndex = letter.indexOf(guessIndex);
+          guessIndex = letters.indexOf(guess);
         }
 
       } else {
-
+        // Failed guess subtracting from tries
         tries--;
 
         // Changes sprite positin after failed attempts
@@ -63,16 +64,10 @@
         }else if (tries === 0) {
           document.getElementById('hangman').style.backgroundPosition = '0 -3072px';
         }
+
+
       }
 
-      if (correctGuesses === numberOfLetters){
-        wins++ ;
-        alert("You Win");
-      }
-      // Checking to see if tries are finished
-      if(tries <= 0){
-        alert("You loose Loser");
-      }
 
       // Updating Wins , Tries and Losses
 
@@ -112,10 +107,19 @@
       document.getElementById("wins").innerHTML = wins;
       document.getElementById("tries").innerHTML = tries;
       document.getElementById("losses").innerHTML = losses;
+
+      if (correctGuesses === numberOfLetters){
+        wins++ ;
+        alert("You Win");
+      }
+      // Checking to see if tries are finished
+      if(tries <= 0){
+        alert("You loose Loser");
+      }
+
   }
 
   function lettersChosen (guess) {
-    var chosenLetters = [];
     var letterStyling = '';
     letterStyling += "<span class='btn btn-danger'>" + guess + "</span>";
     chosenLetters.push(letterStyling);
