@@ -13,7 +13,7 @@
   var wins = 0;
   var tries = 6;
   var losses = 0;
-  var chosenLetters = [];
+
   var correctGuesses = 0;
 
 // Creating placeholders for the letters builds on x variable
@@ -27,14 +27,11 @@
       // Grabs value of keyboard keyup event
       var guess = event.key;
 
-      var letterStyling = '';
+      // Takes guess and adds it to an array which gets updated the screen
+      lettersChosen(guess);
 
-      letterStyling += "<span class='btn btn-danger'>" + guess + "</span>";
-
-      chosenLetters.push(letterStyling);
       console.log(guess);
-      document.getElementById("chosenLetters").innerHTML = chosenLetters;
-      //Grabing either -1 for false or index number of letter if true
+
       var guessIndex = letters.indexOf(guess);
 
       //  Game Logic
@@ -133,4 +130,12 @@
       document.getElementById("wins").innerHTML = wins;
       document.getElementById("tries").innerHTML = tries;
       document.getElementById("losses").innerHTML = losses;
+  }
+
+  function lettersChosen (guess) {
+    var chosenLetters = [];
+    var letterStyling = '';
+    letterStyling += "<span class='btn btn-danger'>" + guess + "</span>";
+    chosenLetters.push(letterStyling);
+    document.getElementById("chosenLetters").innerHTML = chosenLetters;
   }
