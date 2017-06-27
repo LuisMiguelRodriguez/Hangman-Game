@@ -55,33 +55,7 @@
 
         } else {
 
-<<<<<<< HEAD
-      //  Game Logic
-      //  Tesing if current letter exists in letters Array
-      if (guessIndex >= 0){
-        var count = 0;
-        while (guessIndex !== -1){
-          correctGuesses++;
-          document.getElementById(guessIndex).className = "show";
-          delete letters[guessIndex];
-          console.log(letters);
-          guessIndex = letters.indexOf(guess);
-        }
-
-      } else {
         // Failed guess subtracting from tries
-        tries--;
-        position += 512;
-        var hangman = document.getElementById('hangman');
-
-        // Changes sprite position after failed attempts
-        if (tries >= 1){
-          hangman.style.backgroundPosition = '0 -'+ position +'px';
-        } else {
-          alert("You Loose");
-        }
-
-=======
           tries--;
           position += 512;
           var hangman = document.getElementById('hangman');
@@ -93,7 +67,6 @@
         updateStats();
       } else {
         console.log("You did not press a letter try again");
->>>>>>> ajax
       }
 
   }
