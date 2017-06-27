@@ -1,6 +1,15 @@
+
+var url = "http://api.wordnik.com:80/v4/words.json/randomWord?hasDictionaryDef=false&minCorpusCount=0&maxCorpusCount=-1&minDictionaryCount=1&maxDictionaryCount=-1&minLength=5&maxLength=-1&api_key=a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5";
+var myJsonObj = getJson(url);
+console.log(myJsonObj);
+
+
+var word = myJsonObj.word;
+console.log(word);
+
 //Assigning word the value of whats returned
 //when excuting the randomWord function
-  var word = randomWord();
+// var word = randomWord();
 
 //For Testing Purposes
   console.log(word);
@@ -31,8 +40,6 @@
       // Takes guess and adds it to an array which gets updated the screen
       lettersChosen(guess);
 
-      console.log(guess);
-
       var guessIndex = letters.indexOf(guess);
 
       //  Game Logic
@@ -57,7 +64,7 @@
         tries--;
         position += 512;
         var hangman = document.getElementById('hangman');
-      
+
         // Changes sprite position after failed attempts
         if (tries >= 1){
           hangman.style.backgroundPosition = '0 -'+ position +'px';
@@ -66,14 +73,6 @@
         }
 
       }
-
-
-      // // Checking to see if tries are finished
-      // if(tries <= 0){
-      //   alert("You loose Loser");
-      // }
-
-      // Updating Wins , Tries and Losses
 
       updateStats();
   }
@@ -121,3 +120,17 @@
     chosenLetters.push(letterStyling);
     document.getElementById("chosenLetters").innerHTML = chosenLetters;
   }
+
+
+function getJson(url) {
+          return JSON.parse($.ajax({
+              type: 'GET',
+              url: url,
+              dataType: 'json',
+              global: false,
+              async: false,
+              success: function (data) {
+                  return data;
+              }
+          }).responseText);
+      }
