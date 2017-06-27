@@ -1,11 +1,7 @@
 
 var url = "http://api.wordnik.com:80/v4/words.json/randomWord?hasDictionaryDef=false&minCorpusCount=0&maxCorpusCount=-1&minDictionaryCount=1&maxDictionaryCount=-1&minLength=5&maxLength=-1&api_key=a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5";
-var myJsonObj = getJson(url);
-console.log(myJsonObj);
+var word = getRandomWord(url);
 
-
-var word = myJsonObj.word;
-console.log(word);
 
 //Assigning word the value of whats returned
 //when excuting the randomWord function
@@ -18,7 +14,7 @@ console.log(word);
   var letters = word.split('');
   var numberOfLetters = letters.length;
 
-// Several variable to initiate
+// Several variables to initiate
   var wins = 0;
   var tries = 6;
   var losses = 0;
@@ -37,44 +33,48 @@ console.log(word);
       // Grabs value of keyboard keyup event
       var guess = event.key;
 
-      // Takes guess and adds it to an array which gets updated the screen
-      lettersChosen(guess);
+      //Testing for only lettters to be allowed
+      var r = /[a-zA-Z]/;
+      if (r.test(guess)){
+        var guessIndex = letters.indexOf(guess);
+        lettersChosen(guess);
+        //  Game Logic
+        //  Tesing if current letter exists in letters Array
+        if (guessIndex >= 0){
 
-      var guessIndex = letters.indexOf(guess);
+          while (guessIndex !== -1){
+            correctGuesses++;
+            document.getElementById(guessIndex).className = "show";
+            delete letters[guessIndex];
+            console.log(letters);
+            guessIndex = letters.indexOf(guess);
+          }
 
-      //  Game Logic
-      //  Tesing if current letter exists in letters Array
-      if (guessIndex >= 0){
+          if (correctGuesses === numberOfLetters){
+            wins++ ;
+            alert("You Win");
+          }
 
-        while (guessIndex !== -1){
-          correctGuesses++;
-          document.getElementById(guessIndex).className = "show";
-          delete letters[guessIndex];
-          console.log(letters);
-          guessIndex = letters.indexOf(guess);
-        }
-
-        if (correctGuesses === numberOfLetters){
-          wins++ ;
-          alert("You Win");
-        }
-
-      } else {
-
-        tries--;
-        position += 512;
-        var hangman = document.getElementById('hangman');
-
-        // Changes sprite position after failed attempts
-        if (tries >= 1){
-          hangman.style.backgroundPosition = '0 -'+ position +'px';
         } else {
-          alert("You Loose");
+
+          tries--;
+          position += 512;
+          var hangman = document.getElementById('hangman');
+
+          // Changes sprite position after failed attempts
+          if (tries >= 1){
+            hangman.style.backgroundPosition = '0 -'+ position +'px';
+          } else {
+            alert("You Loose");
+          }
+
         }
 
+        updateStats();
+      } else {
+        console.log("You did not press a letter try again");
       }
 
-      updateStats();
   }
 
 // **************************************************************
@@ -121,16 +121,30 @@ console.log(word);
     document.getElementById("chosenLetters").innerHTML = chosenLetters;
   }
 
+  function getJson(url) {
+    return JSON.parse($.ajax({
+        type: 'GET',
+        url: url,
+        dataType: 'json',
+        global: false,
+        async: false,
+        success: function (data) {
+            return data;
+        }
+    }).responseText);
+  }
 
-function getJson(url) {
-          return JSON.parse($.ajax({
-              type: 'GET',
-              url: url,
-              dataType: 'json',
-              global: false,
-              async: false,
-              success: function (data) {
-                  return data;
-              }
-          }).responseText);
-      }
+  // function checkForLettersOnly (letter){
+  //   var r = /[a-zA-Z]/;
+  //   if (r.test(letter)){
+  //     //continue with game
+  //     console.log("You pressed a letter");
+  //   } else {
+  //     console.log("You did not press a letter try again");
+  //   }
+  // }
+
+  function getRandomWord (url){
+    var wordObject = getJson(url);
+    return wordObject.word.toLowerCase();
+  }
