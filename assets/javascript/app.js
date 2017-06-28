@@ -32,7 +32,6 @@
       //Testing for only lettters to be allowed
       //Using the power of regular expressions
       var r = /[a-zA-Z]/;
-
       if (r.test(guess)){
         var guessIndex = letters.indexOf(guess);
         //Add's guess to an array to be displayed

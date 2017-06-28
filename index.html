@@ -10,67 +10,49 @@
 
   <body>
     <!-- navigation bar -->
-      <nav class="navbar navbar-default">
-        <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">Hangman Game</a>
-        </div>
-
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
-            <li><a href="#">Link</a></li>
-          </ul>
-
-        </div><!-- /.navbar-collapse -->
-      </div><!-- /.container-fluid -->
-      </nav>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <h1>Hangman Game</h1>
+      </div>
+    </nav>
     <!-- end of navigation bar -->
 
     <div class="container">
       <div class="jumbotron">
           <!-- // Good Place to insert a pop up that shows you won
           // or lost and to choice to play the game again -->
-        <div id="hangman" class="center"></div>
-        <div id="placeHolder" class="center">
-
+        <div id="hangman" class="center">
+          <div id="placeHolder"></div>
         </div>
 
-      <div class="container">
-        <div class="count">
-          <span class="btn btn-primary">
-            Wins: <span id="wins"></span>
-          </span>
-        </div>
+        <div class="container center box">
+          <div class="count">
+            <span class="btn btn-primary">
+              Wins: <span id="wins"></span>
+            </span>
+          </div>
 
-        <div class="count">
-          <span class="btn btn-primary">
-            Tries: <span id="tries"></span>
-          </span>
-        </div>
+          <div class="count">
+            <span class="btn btn-primary">
+              Tries: <span id="tries"></span>
+            </span>
+          </div>
 
 
-        <div class="count">
-          <span class="btn btn-primary">
-            Losses: <span id="losses"></span>
-          </span>
-        </div>
-
-        <div class="count">
-          <span class="btn btn-primary">
-            Picked Letters: <span id="chosenLetters" class="letters"></span>
-          </span>
+          <div class="count">
+            <span class="btn btn-primary center">
+              Losses: <span id="losses"></span>
+            </span>
+          </div>
 
         </div>
-      </div>
+        <div class="container center box">
+          <div class="count">
+            <span class="btn btn-primary">
+              Picked Letters: <span id="chosenLetters" class="letters"></span>
+            </span>
+          </div>
+        </div>
 
       </div>
     </div>

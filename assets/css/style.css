@@ -1,3 +1,12 @@
+body {
+  margin: 0px;
+  margin-top:70px;
+}
+
+.navbar-fixed-top h1 {
+  text-align: center;
+}
+
 .underline {
   border-bottom: 5px solid black;
   float:left;
@@ -8,6 +17,7 @@
   height:20px;
   line-height: 10px;
   font-size: 20px;
+  width:20px;
 }
 
 .hidden {
@@ -21,22 +31,39 @@
   width: 512px;
   Height:50px;
   background-color: grey;
+  border-radius: 5px;
+  position: absolute;
+  bottom:30px;
+  display: inline-block;
+  text-align: center;
 }
 
 .count {
-  margin:10px;
+  display: inline-block;
+  margin:15px;
+}
+
+.box {
+  width:512px;
 }
 
 #hangman {
   width:512px;
   height:512px;
   background: url(../images/Hangman.jpg) top left no-repeat;
+  border-radius: 15px;
+  position: relative;
 }
 
 .letters {
   font-size: 20px;
   line-height: 20px;
 }
+.center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .center {
   margin-left: auto;
   margin-right: auto;
