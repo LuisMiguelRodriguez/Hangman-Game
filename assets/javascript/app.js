@@ -1,72 +1,66 @@
-
-// End point for api that returns a random number
+ // End point for api that returns a random number
   var url = "http://api.wordnik.com:80/v4/words.json/randomWord?hasDictionaryDef=false&minCorpusCount=0&maxCorpusCount=-1&minDictionaryCount=1&maxDictionaryCount=-1&minLength=5&maxLength=-1&api_key=a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5";
-//Function that returns a random word using an ajax request
+ //Function that returns a random word using an ajax request
   var word = getRandomWord(url);
-
-// Several variables to initiate
-// Needed a we to declare variables
-// for a global scope
+ // Several variables to initiate
+ // Needed a we to declare variables
+ // for a global scope
   var wins = 0;
   var tries = 6;
   var losses = 0;
   var correctGuesses = 0;
   var position = 0;
   var chosenLetters = [];
-
-// Initial Word Setup
-// Splits word to an array and
-// lays out it out on the screen
+ // Initial Word Setup
+ // Splits word to an array and
+ // lays out it out on the screen
   wordSetup(word);
   //Testing Purposes
   console.log(word);
-
-//Updating Stats
+ //Updating Stats
   updateStats();
-
-// Beginning of keyboard interactions and logic of game
+ // Beginning of keyboard interactions and logic of game
   document.onkeyup = function(event) {
-      // Grabs value of keyboard keyup event
-      var guess = event.key;
-
-      //Testing for only lettters to be allowed
-      //Using the power of regular expressions
-      var r = /[a-zA-Z]/;
-      if (r.test(guess)){
-        var guessIndex = letters.indexOf(guess);
-        //Add's guess to an array to be displayed
-        //Shows letters selection
-        lettersChosen(guess);
-        //  Game Logic
-        //  Tesing if current letter exists in letters Array
-        if (guessIndex >= 0){
-          //Loops through the word to find duplicate
-          //letters and to display 1 or more duplicates
-          while (guessIndex !== -1){
-            correctGuesses++;
-            document.getElementById(guessIndex).className = "show";
-            delete letters[guessIndex];
-            console.log(letters);
-            guessIndex = letters.indexOf(guess);
-          }
-
-          winOrLoose();
-
-        } else {
-
-        // Failed guess subtracting from tries
-          tries--;
-          position += 512;
-          var hangman = document.getElementById('hangman');
-
-          winOrLoose();
-
+    // Grabs value of keyboard keyup event
+    var guess = event.keyCode;
+    //Testing for only lettters to be allowed
+    //Using the power of regular expressions
+    // var r = /[a-zA-Z]/;
+    if (guess >= 65 && guess <= 90 ){
+      var guessIndex = letters.indexOf(guess);
+      //Add's guess to an array to be displayed
+      //Shows letters selection
+      lettersChosen(event.key);
+      //  Game Logic
+      //  Tesing if current letter exists in letters Array
+      if (guessIndex >= 0){
+        //Loops through the word to find duplicate
+        //letters and to display 1 or more duplicates
+        while (guessIndex !== -1){
+          correctGuesses++;
+          document.getElementById(guessIndex).className = "show";
+          delete letters[guessIndex];
+          console.log(letters);
+          guessIndex = letters.indexOf(guess);
         }
 
-        updateStats();
+        winOrLoose();
+
       } else {
-        console.log("You did not press a letter try again");
+
+      // Failed guess subtracting from tries
+        tries--;
+        position += 512;
+        var hangman = document.getElementById('hangman');
+
+        winOrLoose();
+
       }
+
+      updateStats();
+    } else {
+      console.log("You did not press a letter try again");
+    }
 
   }
 
@@ -75,7 +69,7 @@
 // **************************************************************
 
 
-
+  // First Created to use a static array now using an Ajax call
   // A function on that returns a random word from an array
   function randomWord () {
     // An array of words to pick from
