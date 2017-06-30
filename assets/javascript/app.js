@@ -11,6 +11,7 @@
   var correctGuesses = 0;
   var position = 0;
   var chosenLetters = [];
+  var listOfLetters = [];
  // Initial Word Setup
  // Splits word to an array and
  // lays out it out on the screen
@@ -26,8 +27,8 @@
     //Testing for only lettters to be allowed
     //Using the power of regular expressions
     // var r = /[a-zA-Z]/;
-    if (guess >= 65 && guess <= 90 ){
-      var guessIndex = letters.indexOf(guess);
+    if (guess >= 65 && guess <= 90 && listOfLetters.indexOf(event.key) === -1){
+      var guessIndex = letters.indexOf(event.key);
       //Add's guess to an array to be displayed
       //Shows letters selection
       lettersChosen(event.key);
@@ -41,7 +42,7 @@
           document.getElementById(guessIndex).className = "show";
           delete letters[guessIndex];
           console.log(letters);
-          guessIndex = letters.indexOf(guess);
+          guessIndex = letters.indexOf(event.key);
         }
 
         winOrLoose();
@@ -111,6 +112,7 @@
   }
 
   function lettersChosen (guess) {
+    listOfLetters.push(guess);
     var letterStyling = '';
     letterStyling += "<span class='btn btn-danger'>" + guess + "</span>";
     chosenLetters.push(letterStyling);
